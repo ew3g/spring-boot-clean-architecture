@@ -3,12 +3,13 @@ package com.example.demo.user.gateway;
 import com.example.demo.user.domain.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserGateway {
 
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
-    public void saveUser(User user);
+    public Optional<User> getUser(String user);
 
-    public boolean validateUser(User user);
+    void saveUser(User user);
 }

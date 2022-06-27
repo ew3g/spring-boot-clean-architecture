@@ -1,9 +1,9 @@
 package com.example.demo.configuration;
 
+import com.example.demo.configuration.security.JwtUserDetailsService;
 import com.example.demo.persistence.user.converter.UserRepositoryConverter;
 import com.example.demo.persistence.user.impl.UserGatewayImpl;
 import com.example.demo.persistence.user.repository.UserRepository;
-import com.example.demo.user.usecase.AuthenticateUserUseCaseImpl;
 import com.example.demo.user.usecase.CreateUserUseCaseImpl;
 import com.example.demo.user.usecase.GetAllUsersUseCaseImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +32,6 @@ public class UserConfiguration {
     @Bean
     public CreateUserUseCaseImpl createUserUseCase() {
         return new CreateUserUseCaseImpl(createUserGatewayImpl());
-    }
-
-    @Bean
-    AuthenticateUserUseCaseImpl createAuthenticaUserUseCaseImpl() {
-        return new AuthenticateUserUseCaseImpl(createUserGatewayImpl());
     }
 
     @Autowired
