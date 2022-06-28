@@ -14,6 +14,7 @@ import java.util.List;
 public class PageElement<T> {
     private int page;
     private int size;
-    private int totalElements;
+    private long totalElements;
+    private int totalPages;
     private List<T> data;
 }

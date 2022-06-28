@@ -26,7 +26,9 @@ public class UserGatewayImpl implements UserGateway {
         Page<UserEntity> userEntityPage = userRepository.findAll(PageRequest.of(page, size));
         return PageElement.<User>builder()
                 .page(userEntityPage.getNumber())
-                .size(userEntityPage.getSize())
+                .size(userEntityPage.getNumberOfElements())
+                .totalElements(userEntityPage.getTotalElements())
+                .totalPages(userEntityPage.getTotalPages())
                 .data(userEntityPage.get().map(userEntity ->
                         userRepositoryConverter.toModel(userEntity)).collect(Collectors.toList()))
                 .build();
