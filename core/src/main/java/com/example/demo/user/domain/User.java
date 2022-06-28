@@ -17,16 +17,11 @@ import java.io.Serializable;
 public class User extends SelfValidation<User> implements Serializable {
     private static final long serialVersionUID = 9543475833960573L;
 
-    public User(String user, String password) {
-        this.user = user;
-        this.password = password;
-    }
-
     @Min(0)
     private Long id;
 
     @NotEmpty
-    private String user;
+    private String username;
 
     @NotEmpty
     private String password;

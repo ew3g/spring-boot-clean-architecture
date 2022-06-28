@@ -2,6 +2,7 @@ package com.example.demo.delivery.user.impl;
 
 import com.example.demo.delivery.user.UserController;
 import com.example.demo.shared.exception.GeneralException;
+import com.example.demo.user.domain.PageElement;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.usecase.CreateUserUseCase;
 import com.example.demo.user.usecase.GetAllUsersUseCase;
@@ -25,14 +26,18 @@ public class UserControllerImpl implements UserController {
     @Override
     @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<User>> getAllUsers() throws GeneralException {
-        return ResponseEntity.ok(getAllUsersUseCase.execute());
+    public ResponseEntity<PageElement<User>> getAllUsers(
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size) {
+
+        return ResponseEntity.ok(getAllUsersUseCase.execute(page, size));
     }
 
     @Override
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> createUser(@Valid @RequestBody final User user) throws GeneralException {
+
         createUserUseCase.execute(user);
         return ResponseEntity.ok().build();
     }

@@ -1,6 +1,5 @@
 package com.example.demo.configuration;
 
-import com.example.demo.configuration.security.JwtUserDetailsService;
 import com.example.demo.persistence.user.converter.UserRepositoryConverter;
 import com.example.demo.persistence.user.impl.UserGatewayImpl;
 import com.example.demo.persistence.user.repository.UserRepository;

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class CreateUserUseCaseImpl implements CreateUserUseCase{
+
     private final UserGateway userGateway;
 
     @Override

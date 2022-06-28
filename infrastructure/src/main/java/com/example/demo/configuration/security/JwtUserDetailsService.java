@@ -1,30 +1,34 @@
 package com.example.demo.configuration.security;
 
-import com.example.demo.user.domain.User;
 import com.example.demo.user.gateway.UserGateway;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+//@Service
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
+    //@Autowired
     private final UserGateway userGateway;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Optional<User> userOpt = userGateway.getUser(username);
-        if(!userOpt.isPresent()) {
-            throw new UsernameNotFoundException(String.format("Username not found: ", username));
+        List<GrantedAuthority> authorityList = new ArrayList<>();
+        authorityList.add(new SimpleGrantedAuthority("USER_ROLE"));
+        Optional<com.example.demo.user.domain.User> optUser = userGateway.getUser(username);
+        if (!optUser.isPresent()) {
+           throw new UsernameNotFoundException(String.format("Username %s not found", username));
         }
-
-        User user = userOpt.get();
-        return new org.springframework.security.core.userdetails.User(user.getUser(),
-                user.getPassword(), new ArrayList<>());
+        com.example.demo.user.domain.User user = optUser.get();
+        return new User(user.getUsername(), user.getPassword(), authorityList);
     }
 }

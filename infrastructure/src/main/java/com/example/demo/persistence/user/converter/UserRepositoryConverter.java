@@ -9,7 +9,7 @@ public class UserRepositoryConverter implements RepositoryConverter<UserEntity, 
     public UserEntity toTable(User persistenceObject) {
         return UserEntity.builder()
                 .id(persistenceObject.getId())
-                .user(persistenceObject.getUser())
+                .username(persistenceObject.getUsername())
                 .password(persistenceObject.getPassword())
                 .build();
     }
@@ -18,7 +18,7 @@ public class UserRepositoryConverter implements RepositoryConverter<UserEntity, 
     public User toModel(UserEntity tableObject) {
         return User.builder()
                 .id(tableObject.getId())
-                .user(tableObject.getUser())
+                .username(tableObject.getUsername())
                 .password(tableObject.getPassword())
                 .build();
     }

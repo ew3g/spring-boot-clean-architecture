@@ -1,5 +1,6 @@
 package com.example.demo.user.gateway;
 
+import com.example.demo.user.domain.PageElement;
 import com.example.demo.user.domain.User;
 
 import java.util.List;
@@ -7,9 +8,9 @@ import java.util.Optional;
 
 public interface UserGateway {
 
-    List<User> getAllUsers();
+    PageElement<User> getAllUsers(int page, int size);
 
-    public Optional<User> getUser(String user);
+    Optional<User> getUser(String username);
 
     void saveUser(User user);
 }

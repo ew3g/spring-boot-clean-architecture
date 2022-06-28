@@ -1,5 +1,6 @@
 package com.example.demo.user.usecase;
 
+import com.example.demo.user.domain.PageElement;
 import com.example.demo.user.domain.User;
 import com.example.demo.user.gateway.UserGateway;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,7 @@ public class GetAllUsersUseCaseImpl implements GetAllUsersUseCase {
     private final UserGateway userGateway;
 
     @Override
-    public List<User> execute() {
-        return userGateway.getAllUsers();
+    public PageElement<User> execute(int page, int size) {
+        return userGateway.getAllUsers(page, size);
     }
 }
