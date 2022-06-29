@@ -21,7 +21,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         super();
     }
 
-    @ExceptionHandler({UnauthorizedException.class, GeneralException.class, NullPointerException.class, IllegalArgumentException.class, IllegalStateException.class})
+    @ExceptionHandler({NullPointerException.class})
     public ResponseEntity<Object> handleInternalException(final RuntimeException ex, final WebRequest request) {
         Map<String, Object> mapResponse = new HashMap<>();
         mapResponse.put("timestamp", new Date());
