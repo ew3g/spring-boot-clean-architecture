@@ -13,11 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-//@Service
 @AllArgsConstructor
 public class JwtUserDetailsService implements UserDetailsService {
 
-    //@Autowired
     private final UserGateway userGateway;
 
     @Override

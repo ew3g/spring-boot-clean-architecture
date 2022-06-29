@@ -5,11 +5,13 @@ import com.example.demo.persistence.user.impl.UserGatewayImpl;
 import com.example.demo.persistence.user.repository.UserRepository;
 import com.example.demo.user.usecase.CreateUserUseCaseImpl;
 import com.example.demo.user.usecase.GetAllUsersUseCaseImpl;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
+@AllArgsConstructor
 public class UserConfiguration {
     private UserRepository userRepository;
 
